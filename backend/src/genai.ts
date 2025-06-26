@@ -1,8 +1,8 @@
-import {GoogleGenAI} from "@google/genai";
-import { env } from "hono/adapter";
+import { GoogleGenAI } from "@google/genai";
+import { PinataSDK } from "pinata";
 
-
-
-const { GEMINI_API } = env<{ GEMINI_API: string }>
-
-const ai = new GoogleGenAI({apiKey: })
+export const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API });
+export const pinata = new PinataSDK({
+  pinataJwt: process.env.PINATA_JWT,
+  pinataGateway: process.env.GATEWAY_URL,
+});
