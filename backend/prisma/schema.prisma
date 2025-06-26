@@ -13,3 +13,16 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model User {
+  userId        String @id @unique @default(uuid())
+  walletAddress String
+  fileIpfs      String
+  userFile      File[] @relation("UserFile")
+}
+
+model File {
+  id        String @id @unique @default(uuid())
+  pinataUrl String
+  userId    User[] @relation("UserFile")
+}
